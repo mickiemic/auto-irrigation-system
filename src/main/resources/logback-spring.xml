@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="logpath" value="log" />
+
+    <appender name="clidebug" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{YYYY/MM/dd HH:mm:ss.SSS}] [%-7level] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="deftrace" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logpath}/mbridge.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logpath}/mbridge-%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>[%d{YYYY/MM/dd HH:mm:ss.SSS}] [%-5level] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="clidebug" />
+        <appender-ref ref="deftrace"/>
+    </root>
+</configuration>
